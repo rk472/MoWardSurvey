@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">MoWardSurvey</string>
+    <string name="title_activity_survey">SurveyActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_survey_new">SurveyNewActivity</string>
+    <string name="title_activity_survey_tab">SurveyTabActivity</string>
+    <string name="survey_title">Create Survey</string>
+    <string name="date_time">22/07/2018 12:11</string>
+    <string name="ward_no">Ward No :</string>
+    <string name="continue_text">If you go from this page to the next page you won\'tbe able to come back again. So kindly check all the details filled correctly or not. Do you really want to continue?</string>
+    <string-array name="gen">
+        <item>Male</item>
+        <item>FeMale</item>
+        <item>Other</item>
+    </string-array>
+    <string-array name="marr">
+        <item>Married</item>
+        <item>Unmarried</item>
+    </string-array>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="survey">Survey</string>
+    <string name="booth">Booth</string>
+</resources>

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10sp"
+    app:cardCornerRadius="5sp"
+    app:cardElevation="5sp"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="18">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/curr_number"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  /  "
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tot_number"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:layout_weight="2">
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:hint="Name"
+                    android:inputType="text"
+                    android:id="@+id/survey_name"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:layout_weight="2">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gender :  "
+                android:textSize="18sp"
+                android:layout_marginLeft="11sp"/>
+            <Spinner
+                android:layout_width="wrap_content"
+                android:id="@+id/survey_gender_select"
+                android:layout_centerVertical="true"
+                android:entries="@array/gen"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:layout_weight="2">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Marital Status :  "
+                android:layout_centerVertical="true"
+                android:textSize="18sp"
+                android:layout_marginLeft="11sp"/>
+            <Spinner
+                android:layout_width="wrap_content"
+                android:id="@+id/survey_marital_select"
+                android:layout_centerVertical="true"
+                android:entries="@array/marr"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:weightSum="2"
+            android:layout_weight="2">
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:hint="Date of Birth"
+                    android:text="1/01/2011"
+                    android:id="@+id/survey_dob"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:hint="Date of Marriage"
+                    android:text="1/01/2011"
+                    android:id="@+id/survey_dom"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:layout_weight="2">
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:text="No Adhar"
+                android:id="@+id/survey_no_adhar"
+                android:layout_height="match_parent" />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_marginLeft="5sp"
+                android:layout_marginRight="10sp"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:hint="Adhar(Blank if  not shared)"
+                    android:id="@+id/survey_adhar"
+                    android:inputType="text"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:layout_weight="2">
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:text="No Voter"
+                android:id="@+id/survey_no_voter"
+                android:layout_height="match_parent" />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_marginLeft="5sp"
+                android:layout_marginRight="10sp"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:hint="Voter ID"
+                    android:inputType="text"
+                    android:id="@+id/survey_voter"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:layout_weight="2">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_marginLeft="10sp"
+                android:text="Relation With H.O.F"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_marginRight="10sp"
+                android:layout_marginLeft="5sp"
+                android:inputType="text"
+                android:id="@+id/survey_relation"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3">
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="70sp"
+                android:id="@+id/survey_back"
+                android:layout_marginLeft="20sp"
+                android:src="@drawable/back_vect"
+                android:layout_centerVertical="true"
+                android:layout_height="70sp" />
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_marginLeft="80sp"
+                android:layout_marginRight="80sp"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:hint="Contact Number"
+                    android:id="@+id/survey_contact"
+                    android:inputType="text"
+                    android:layout_height="wrap_content" />
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="70sp"
+                android:id="@+id/survey_next"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20sp"
+                android:src="@drawable/next_vect"
+                android:layout_centerVertical="true"
+                android:layout_height="70sp" />
+        </RelativeLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>
