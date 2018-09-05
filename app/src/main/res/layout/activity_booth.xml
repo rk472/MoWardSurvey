@@ -7,51 +7,66 @@
     android:gravity="center_horizontal"
     android:layout_height="match_parent"
     tools:context=".BoothActivity">
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
         android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:maxLines="1"
+            android:layout_marginTop="5sp"
+            android:fontFamily="@font/miriam_libre_new"
+            android:layout_centerHorizontal="true"
+            />
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_marginTop="50sp"
+            android:layout_marginBottom="55sp"
+            android:layout_height="match_parent">
+        </android.support.v7.widget.RecyclerView>
         <LinearLayout
             android:layout_width="match_parent"
             android:weightSum="20"
-            android:layout_height="55dp">
+            android:layout_alignParentBottom="true"
+            android:layout_height="50sp">
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="16"
+                android:layout_weight="17"
                 android:gravity="center"
                 android:layout_height="match_parent">
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_marginLeft="10sp"
                     android:orientation="vertical"
                     android:layout_centerVertical="true"
                     android:background="@drawable/spinner_back"
                     android:layout_height="45dp">
-                    <Spinner
+                    <EditText
                         android:layout_width="match_parent"
-                        android:layout_height="45dp">
-                    </Spinner>
+                        android:layout_height="match_parent"
+                        android:hint="Enter Message Here"
+                        android:paddingLeft="5sp"
+                        android:paddingRight="5sp"
+                        android:background="#00000000"/>
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="4"
+                android:layout_weight="3"
                 android:gravity="center"
                 android:layout_height="match_parent">
                 <ImageButton
-                    android:layout_width="45sp"
+                    android:layout_width="match_parent"
                     android:background="@drawable/call_back"
                     android:src="@drawable/message_vect"
                     android:layout_centerVertical="true"
+                    android:layout_marginLeft="4sp"
+                    android:layout_marginTop="2sp"
+                    android:layout_marginBottom="2sp"
+                    android:layout_marginRight="4sp"
                     android:layout_alignParentEnd="true"
-                    android:layout_height="45sp" />
+                    android:layout_height="match_parent" />
             </LinearLayout>
         </LinearLayout>
-        <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_margin="5sp"
-            android:layout_height="match_parent">
-        </android.support.v7.widget.RecyclerView>
-    </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>
