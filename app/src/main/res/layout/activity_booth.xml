@@ -13,16 +13,32 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="25sp"
+            android:textSize="19sp"
+            android:text="Committee Members"
             android:maxLines="1"
+            android:layout_marginTop="8sp"
+            android:layout_marginLeft="5sp"
+            android:fontFamily="@font/miriam_libre_new"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:paddingLeft="10sp"
+            android:paddingRight="10sp"
             android:layout_marginTop="5sp"
+            android:layout_height="35sp"
+            android:onClick="addMember"
+            android:layout_weight="5"
+            android:layout_marginRight="10sp"
+            android:layout_alignParentRight="true"
             android:fontFamily="@font/miriam_libre_new"
-            android:layout_centerHorizontal="true"
-            />
+            android:background="@color/colorAccent"
+            android:textColor="#ffffff"
+            android:text="Add Member"/>
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_marginTop="50sp"
-            android:layout_marginBottom="55sp"
+            android:layout_marginBottom="50sp"
+            android:layout_marginLeft="5sp"
+            android:layout_marginRight="5sp"
             android:layout_height="match_parent">
         </android.support.v7.widget.RecyclerView>
         <LinearLayout

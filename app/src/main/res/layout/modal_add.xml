@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="300sp"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/modal_name"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp"
+        android:layout_marginTop="20sp"
+        android:inputType="text"
+        android:backgroundTint="@color/colorAccentDark"
+        android:hint="Enter Name" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/modal_designation"
+        android:layout_marginLeft="20sp"
+        android:inputType="text"
+        android:layout_marginRight="20sp"
+        android:layout_marginTop="20sp"
+        android:backgroundTint="@color/colorAccentDark"
+        android:hint="Enter Designation" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/modal_contact"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp"
+        android:layout_marginTop="20sp"
+        android:inputType="phone"
+        android:backgroundTint="@color/colorAccentDark"
+        android:hint="Enter Contact No" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="40sp"
+        android:id="@+id/modal_btn"
+        android:layout_margin="20sp"
+        android:background="@color/colorAccent"
+        android:text="Add Menber Now"
+        android:paddingLeft="40sp"
+        android:paddingRight="40sp"
+        android:textColor="#ffffff" />
+</LinearLayout>
