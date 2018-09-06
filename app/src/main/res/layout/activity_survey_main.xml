@@ -15,69 +15,9 @@
             android:layout_height="wrap_content"
             android:weightSum="10"
             android:orientation="vertical">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:layout_height="0dp">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="5sp"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/ward_no"
-                        android:textSize="18sp" />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:text=""/>
-                </LinearLayout>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:textSize="18sp"
-                    android:layout_marginRight="5sp"
-                    android:layout_alignParentRight="true"
-                    android:text="@string/date_time"/>
-            </RelativeLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_weight="1"
-                android:layout_height="0dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:layout_marginLeft="10sp"
-                    android:text=" Family Number : WD"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:text="1"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:text="_F"/>
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="3sp"
-                    android:hint="FamilyNo"
-                    android:inputType="number"
-                    android:maxLength="4"
-                    android:textSize="18sp"
-                    android:ems="5"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:gravity="center"
                 android:layout_height="0dp">
                 <android.support.design.widget.TextInputLayout
@@ -87,6 +27,7 @@
                     android:layout_height="wrap_content">
                     <EditText
                         android:layout_width="match_parent"
+                        android:id="@+id/hof_name"
                         android:layout_height="wrap_content"
                         android:inputType="textPersonName"
                         android:hint="Name of Head of the family"/>
@@ -94,15 +35,15 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_weight="4"
-                android:weightSum="10"
+                android:layout_weight="3"
+                android:weightSum="3"
                 android:layout_height="0dp"
                 android:orientation="vertical">
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="4"
+                    android:layout_weight="2"
                     android:layout_marginLeft="10sp"
                     android:layout_marginRight="10sp">
 
@@ -110,55 +51,18 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:lines="2"
+                        android:id="@+id/family_address"
                         android:hint="Address"
                         android:inputType="textMultiLine"
                         android:maxLength="250"
                         android:maxLines="2" />
                 </android.support.design.widget.TextInputLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:weightSum="11"
-                    android:layout_weight="3"
-                    android:layout_height="0dp"
-                    android:orientation="horizontal">
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="5"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10sp"
-                        android:layout_marginRight="10sp">
 
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="District"
-                            android:text="Cuttack"
-                            android:inputType="text" />
-                    </android.support.design.widget.TextInputLayout>
-                    <View
-                        android:layout_height="1dp"
-                        android:layout_weight="1"
-                        android:layout_width="0dp"/>
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="5"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10sp"
-                        android:layout_marginRight="10sp">
-
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:hint="State"
-                            android:text="Odisha"
-                            android:inputType="text" />
-                    </android.support.design.widget.TextInputLayout>
-                </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:weightSum="13"
-                    android:layout_weight="3"
+                    android:layout_weight="1"
                     android:layout_height="0dp"
                     android:orientation="horizontal">
                     <android.support.design.widget.TextInputLayout
@@ -172,6 +76,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="PIN Code"
+                            android:id="@+id/family_pin"
                             android:maxLength="6"
                             android:inputType="number"/>
                     </android.support.design.widget.TextInputLayout>
@@ -186,6 +91,7 @@
                             android:layout_height="wrap_content"
                             android:hint="Phone (Only 10digits)"
                             android:inputType="phone"
+                            android:id="@+id/family_phone"
                             android:maxLength="10"/>
                     </android.support.design.widget.TextInputLayout>
                 </LinearLayout>
@@ -206,15 +112,18 @@
                     android:layout_width="wrap_content"
                     android:ems="3"
                     android:id="@+id/survey_family_member"
+                    android:inputType="number"
+                    android:maxLength="3"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_weight="2"
+                android:layout_weight="3"
                 android:layout_height="0dp">
                 <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:fillViewport="true">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:orientation="vertical"
@@ -227,26 +136,57 @@
                             android:textSize="18sp"/>
                         <CheckBox
                             android:layout_width="wrap_content"
+                            android:id="@+id/atala_ck"
                             android:layout_height="wrap_content"
-                            android:text="Scheme 2"
+                            android:text="Atala Pension Yojana"
                             android:textSize="17sp"/>
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Scheme 2"
+                            android:id="@+id/ujjwala_ck"
+                            android:text="Ujjwala Yojana"
                             android:textSize="17sp"/>
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Scheme 3"
+                            android:text="Sukanya Yojana"
+                            android:id="@+id/sukanya_ck"
                             android:textSize="17sp"/>
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Scheme 4"
+                            android:id="@+id/surakhya_ck"
+                            android:text="Surakhya Bima Yojana"
+                            android:textSize="17sp"/>
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Other Schemes"
+                            android:id="@+id/other_ck"
                             android:textSize="17sp"/>
                     </LinearLayout>
                 </ScrollView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_height="0dp">
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="10sp"
+                    android:id="@+id/other_container"
+                    android:layout_marginRight="60sp"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:lines="2"
+                        android:id="@+id/other_schemes"
+                        android:maxLines="2"
+                        android:hint="Other Scheme"/>
+                </android.support.design.widget.TextInputLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
@@ -255,7 +195,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        android:layout_margin="@dimen/fab_margin"
+        android:layout_margin="5sp"
         app:srcCompat="@drawable/next_vect" />
-
 </android.support.design.widget.CoordinatorLayout>
