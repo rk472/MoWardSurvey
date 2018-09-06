@@ -17,6 +17,16 @@
         <item>FeMale</item>
         <item>Other</item>
     </string-array>
+    <string-array name="blood">
+        <item>B+</item>
+        <item>A+</item>
+        <item>AB+</item>
+        <item>O+</item>
+        <item>B-</item>
+        <item>A-</item>
+        <item>AB-</item>
+        <item>O-</item>
+    </string-array>
     <string-array name="marr">
         <item>Married</item>
         <item>Unmarried</item>
