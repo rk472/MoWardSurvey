@@ -39,6 +39,7 @@
             android:layout_marginBottom="50sp"
             android:layout_marginLeft="5sp"
             android:layout_marginRight="5sp"
+            android:id="@+id/member_list"
             android:layout_height="match_parent">
         </android.support.v7.widget.RecyclerView>
         <LinearLayout
@@ -63,6 +64,7 @@
                         android:hint="Enter Message Here"
                         android:paddingLeft="5sp"
                         android:paddingRight="5sp"
+                        android:id="@+id/message_booth"
                         android:background="#00000000"/>
                 </LinearLayout>
             </LinearLayout>
@@ -77,6 +79,7 @@
                     android:src="@drawable/message_vect"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="4sp"
+                    android:onClick="message"
                     android:layout_marginTop="2sp"
                     android:layout_marginBottom="2sp"
                     android:layout_marginRight="4sp"

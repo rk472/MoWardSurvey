@@ -21,6 +21,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:text="Sample Name"
+                android:id="@+id/member_name"
                 android:textSize="17sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/miriam_libre_new"
@@ -31,7 +32,8 @@
                 android:textSize="15sp"
                 android:fontFamily="@font/miriam_libre_new"
                 android:layout_marginTop="3sp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:id="@+id/member_desig"/>
         </LinearLayout>
         <RelativeLayout
             android:layout_width="0dp"
@@ -44,7 +46,8 @@
                 android:layout_marginLeft="5sp"
                 android:layout_marginRight="5sp"
                 android:layout_centerHorizontal="true"
-                android:layout_height="30sp" />
+                android:layout_height="30sp"
+                android:id="@+id/member_call"/>
             <ImageButton
                 android:layout_width="match_parent"
                 android:background="@drawable/delete_back_all"
@@ -52,6 +55,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="3sp"
                 android:layout_marginLeft="5sp"
+                android:id="@+id/member_delete"
                 android:layout_marginRight="5sp"
                 android:layout_centerHorizontal="true"
                 android:layout_height="30sp" />
