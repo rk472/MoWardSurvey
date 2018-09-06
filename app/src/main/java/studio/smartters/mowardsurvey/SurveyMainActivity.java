@@ -59,55 +59,40 @@ public class SurveyMainActivity extends AppCompatActivity {
                 final String mAddress = etAddress.getText().toString().trim();
                 final String mOther = etOther.getText().toString().trim();
                 if(!(mMember.equals("")||mName.equals("")||mAddress.equals("")||mPhone.equals("")||mPin.equals(""))) {
-                    JSONObject jsonObject = new JSONObject();
-                    try {
-                        jsonObject.put("name",mName);
-                        jsonObject.put("pin",mPin);
-                        jsonObject.put("phone",mPhone);
-                        jsonObject.put("address",mAddress);
-                        jsonObject.put("member_no",mMember);
-                        jsonObject.put("other_scheme_name",mOther);
-                        if(cbAtala.isChecked()){
-                            jsonObject.put("atala_scheme",1);
-                        }else{
-                            jsonObject.put("atala_scheme",0);
+                    if(Integer.parseInt(mMember)<1){
+                        Snackbar.make(view, "Members must be more than 0", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                    }else {
+                        JSONObject jsonObject = new JSONObject();
+                        try {
+                            jsonObject.put("name", mName);
+                            jsonObject.put("pin", mPin);
+                            jsonObject.put("phone", mPhone);
+                            jsonObject.put("address", mAddress);
+                            jsonObject.put("member_no", mMember);
+                            jsonObject.put("other_scheme_name", cbOther.isChecked() ?mOther:"");
+                            jsonObject.put("atala_scheme", cbAtala.isChecked() ? 1 : 0);
+                            jsonObject.put("ujjwala_scheme", cbUjjwala.isChecked() ? 1 : 0);
+                            jsonObject.put("sukanya_scheme", cbSukanya.isChecked() ? 1 : 0);
+                            jsonObject.put("surakhya_scheme", cbSurakhya.isChecked() ? 1 : 0);
+                            jsonObject.put("other_scheme", cbOther.isChecked() ? 1 : 0);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                        if(cbUjjwala.isChecked()){
-                            jsonObject.put("ujjwala_scheme",1);
-                        }else{
-                            jsonObject.put("ujjwala_scheme",0);
-                        }
-                        if(cbSukanya.isChecked()){
-                            jsonObject.put("sukanya_scheme",1);
-                        }else{
-                            jsonObject.put("sukanya_scheme",0);
-                        }
-                        if(cbSurakhya.isChecked()){
-                            jsonObject.put("surakhya_scheme",1);
-                        }else{
-                            jsonObject.put("surakhya_scheme",0);
-                        }
-                        if(cbOther.isChecked()){
-                            jsonObject.put("other_scheme",1);
-                        }else{
-                            jsonObject.put("other_scheme",0);
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                        final String jsonData = jsonObject.toString();
+                        new AlertDialog.Builder(SurveyMainActivity.this)
+                                .setTitle("Alert")
+                                .setMessage(R.string.continue_text)
+                                .setPositiveButton("Yes, Sure", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        Intent ii = new Intent(SurveyMainActivity.this, SurveyItemActivity.class);
+                                        ii.putExtra("json_data", jsonData);
+                                        startActivity(ii);
+                                        finish();
+                                    }
+                                }).setNegativeButton("No, Don't", null).show();
                     }
-                    final String jsonData = jsonObject.toString();
-                    new AlertDialog.Builder(SurveyMainActivity.this)
-                            .setTitle("Alert")
-                            .setMessage(R.string.continue_text)
-                            .setPositiveButton("Yes, Sure", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    Intent ii = new Intent(SurveyMainActivity.this,SurveyItemActivity.class);
-                                    ii.putExtra("json_data",jsonData);
-                                    startActivity(ii);
-                                    finish();
-                                }
-                            }).setNegativeButton("No, Don't",null).show();
                 }else{
                     Snackbar.make(view, "Please Fill All Fields.", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();

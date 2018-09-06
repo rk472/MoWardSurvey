@@ -143,6 +143,8 @@
                     android:layout_width="match_parent"
                     android:hint="Date of Birth"
                     android:text=""
+                    android:focusable="false"
+                    android:editable="false"
                     android:id="@+id/survey_dob"
                     android:clickable="true"
                     android:layout_height="wrap_content" />
@@ -164,7 +166,9 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:hint="Date of Marriage"
-                    android:text="1/01/2011"
+                    android:text=""
+                    android:focusable="false"
+                    android:editable="false"
                     android:id="@+id/survey_dom"
                     android:clickable="true"
                     android:layout_height="wrap_content" />
@@ -190,7 +194,8 @@
                     android:layout_width="match_parent"
                     android:hint="Adhar(Blank if  not shared)"
                     android:id="@+id/survey_adhar"
-                    android:inputType="text"
+                    android:inputType="number"
+                    android:maxLength="12"
                     android:layout_height="wrap_content" />
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
@@ -213,6 +218,7 @@
                     android:layout_width="match_parent"
                     android:hint="Voter ID"
                     android:inputType="text"
+                    android:textAllCaps="true"
                     android:id="@+id/survey_voter"
                     android:layout_height="wrap_content" />
             </android.support.design.widget.TextInputLayout>
@@ -249,8 +255,9 @@
                     android:layout_width="match_parent"
                     android:hint="Contact Number"
                     android:id="@+id/survey_contact"
-                    android:inputType="text"
-                    android:layout_height="wrap_content" />
+                    android:inputType="number"
+                    android:layout_height="wrap_content"
+                    android:maxLength="10"/>
             </android.support.design.widget.TextInputLayout>
             <Button
                 android:layout_width="100sp"
@@ -264,6 +271,7 @@
                 android:layout_marginRight="10sp"
                 android:fontFamily="@font/miriam_libre_new"
                 android:layout_marginBottom="5sp"
+                android:maxHeight="40sp"
                 android:text="Save"/>
         </RelativeLayout>
     </LinearLayout>
