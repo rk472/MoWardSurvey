@@ -32,7 +32,9 @@
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".BoothActivity" />
-        <activity android:name=".ViewDataActivity"></activity>
+        <activity android:name=".ViewDataActivity" />
+        <activity android:name=".PersonDataActivity"
+            android:theme="@style/NoBar"/>
     </application>
 
 </manifest>
