@@ -44,6 +44,7 @@
                 android:background="@drawable/call_back_all"
                 android:src="@drawable/call_vect"
                 android:layout_marginLeft="5sp"
+                android:layout_marginTop="2sp"
                 android:layout_marginRight="5sp"
                 android:layout_centerHorizontal="true"
                 android:layout_height="30sp"
