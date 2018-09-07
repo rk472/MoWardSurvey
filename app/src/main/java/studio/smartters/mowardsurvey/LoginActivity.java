@@ -95,6 +95,8 @@ public class LoginActivity extends AppCompatActivity {
                     editor.apply();
                     editor.putString("id",json.getString("id"));
                     editor.apply();
+                    editor.putString("booth_id",json.getString("booth"));
+                    editor.apply();
                     startActivity(new Intent(LoginActivity.this,HomeActivity.class));
                     finish();
                 }else{
