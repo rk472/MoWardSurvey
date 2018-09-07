@@ -60,6 +60,8 @@ public class SurveyMainActivity extends AppCompatActivity {
                 final String mPin = etPin.getText().toString().trim();
                 final String mAddress = etAddress.getText().toString().trim();
                 final String mOther = etOther.getText().toString().trim();
+                final String booth_id=getSharedPreferences("login",MODE_PRIVATE).getString("booth_id","0");
+                final String uid=getSharedPreferences("login",MODE_PRIVATE).getString("id","0");
                 if(!(mMember.equals("")||mName.equals("")||mAddress.equals("")||mPhone.equals("")||mPin.equals(""))) {
                     if(Integer.parseInt(mMember)<1){
                         Snackbar.make(view, "Members must be more than 0", Snackbar.LENGTH_LONG)
@@ -78,6 +80,8 @@ public class SurveyMainActivity extends AppCompatActivity {
                             jsonObject.put("sukanya_scheme", cbSukanya.isChecked() ? 1 : 0);
                             jsonObject.put("surakhya_scheme", cbSurakhya.isChecked() ? 1 : 0);
                             jsonObject.put("other_scheme", cbOther.isChecked() ? 1 : 0);
+                            jsonObject.put("booth_id",booth_id);
+                            jsonObject.put("uid",uid);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
