@@ -226,6 +226,7 @@
                     <android.support.design.widget.TextInputLayout
                         android:layout_width="0dp"
                         android:visibility="invisible"
+                        android:id="@+id/tlDom"
                         android:layout_weight="1"
                         android:textColorHint="@color/colorAccentDark"
                         android:layout_marginTop="5sp"

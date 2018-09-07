@@ -1,19 +1,23 @@
 package studio.smartters.mowardsurvey;
 
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class PersonDataActivity extends AppCompatActivity {
     private EditText etName,etHead,etAddress,etRelation,etContact,etGen,etBlood,etDom,etDob,etMarriage,etAdhar,etVoter;
+    private TextInputLayout tlDom;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_person_data);
+        tlDom = findViewById(R.id.tlDom);
         etName = findViewById(R.id.person_name);
         etHead = findViewById(R.id.person_head_name);
         etAddress = findViewById(R.id.person_address);
@@ -35,6 +39,11 @@ public class PersonDataActivity extends AppCompatActivity {
     }
     public void setData(JSONObject s){
         try {
+            if (s.getString("pmarriage").equalsIgnoreCase("Married")) {
+                tlDom.setVisibility(View.VISIBLE);
+            } else {
+                tlDom.setVisibility(View.INVISIBLE);
+            }
             etName.setText(s.getString("pname"));
             etHead.setText(s.getString("phead"));
             etAddress.setText(s.getString("paddress"));
