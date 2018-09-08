@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="3dp"
+    app:cardElevation="3dp"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="13"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="11"
+            android:orientation="vertical"
+            android:padding="5sp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/miriam_libre_new"
+                android:text="Person Name"
+                android:textColor="@color/colorAccentDark"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/search_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/miriam_libre_new"
+                android:text="Sample Name"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorAccentDark"
+                android:fontFamily="@font/miriam_libre_new"
+                android:text="Area of Survey"
+                android:textSize="11sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/search_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/miriam_libre_new"
+                android:text="Sample Name"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent">
+            <ImageButton
+            android:layout_width="45sp"
+            android:background="@drawable/call_back_all"
+            android:src="@drawable/call_vect"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_height="45sp"
+            android:id="@+id/search_call"/>
+        </RelativeLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

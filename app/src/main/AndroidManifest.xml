@@ -33,8 +33,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".BoothActivity" />
         <activity android:name=".ViewDataActivity" />
-        <activity android:name=".PersonDataActivity"
-            android:theme="@style/NoBar"/>
+        <activity
+            android:name=".PersonDataActivity"
+            android:theme="@style/NoBar" />
+        <activity android:name=".HelpRequestActivity"></activity>
     </application>
 
 </manifest>
