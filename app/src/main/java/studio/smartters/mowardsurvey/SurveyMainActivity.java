@@ -106,20 +106,4 @@ public class SurveyMainActivity extends AppCompatActivity {
             }
         });
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.view_survey, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_view) {
-            startActivity(new Intent(this,ViewDataActivity.class));
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }

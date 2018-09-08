@@ -8,4 +8,22 @@
         android:icon="@drawable/booth_vect"
         android:title="@string/booth"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/action_dataview"
+        android:orderInCategory="100"
+        android:icon="@drawable/booth_vect"
+        android:title="View Survey Data"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_help"
+        android:orderInCategory="100"
+        android:icon="@drawable/booth_vect"
+        android:title="Help Requests"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_logout"
+        android:orderInCategory="100"
+        android:icon="@drawable/booth_vect"
+        android:title="Log Out"
+        app:showAsAction="never" />
 </menu>

@@ -1,6 +1,7 @@
 package studio.smartters.mowardsurvey;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -67,6 +68,21 @@ public class HomeActivity extends AppCompatActivity {
 
         if (id == R.id.action_booth) {
             startActivity(new Intent(this,BoothActivity.class));
+            return true;
+        }else if (id == R.id.action_help){
+            startActivity(new Intent(this,HelpRequestActivity.class));
+            return true;
+        }else if(id == R.id.action_dataview){
+            startActivity(new Intent(this,ViewDataActivity.class));
+            return true;
+        }else if(id == R.id.action_logout){
+            SharedPreferences s=getSharedPreferences("login",MODE_PRIVATE);
+            SharedPreferences.Editor e=s.edit();
+            e.putBoolean("login",false);
+            e.apply();
+            finishAffinity();
+            startActivity(new Intent(this,LoginActivity.class));
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
