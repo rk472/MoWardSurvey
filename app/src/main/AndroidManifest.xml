@@ -25,9 +25,6 @@
             android:name=".SurveyMainActivity"
             android:label="Survey Main" />
         <activity
-            android:name=".SurveyItemActivity"
-            android:label="Member Details" />
-        <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -37,6 +34,9 @@
             android:theme="@style/NoBar"/>
         <activity android:name=".SurveyItemNewActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".HelpRequestActivity"
+            android:label="All Help Request"
+            android:parentActivityName=".HomeActivity"/>
     </application>
 
 </manifest>
