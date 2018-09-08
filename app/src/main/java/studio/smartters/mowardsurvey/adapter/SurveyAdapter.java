@@ -27,6 +27,7 @@ public class SurveyAdapter extends RecyclerView.Adapter<ServeyViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull ServeyViewHolder holder, int position) {
         holder.setPosition(size);
+        holder.setClick(position);
     }
 
     @Override

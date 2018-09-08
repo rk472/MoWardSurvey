@@ -33,8 +33,13 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".BoothActivity" />
         <activity android:name=".ViewDataActivity" />
-        <activity android:name=".PersonDataActivity"
-            android:theme="@style/NoBar"/>
+        <activity
+            android:name=".PersonDataActivity"
+            android:theme="@style/NoBar" />
+        <activity
+            android:name=".SurveyItemNewActivity"
+            android:label="@string/title_activity_survey_item_new"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

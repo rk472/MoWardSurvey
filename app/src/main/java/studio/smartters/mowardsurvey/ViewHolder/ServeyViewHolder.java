@@ -110,47 +110,58 @@ public class ServeyViewHolder extends RecyclerView.ViewHolder {
                 d.show();
             }
         });
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String name=nameText.getText().toString().trim();
-                String gender=selectGender.getSelectedItem().toString();
-                String bloodGroup=selectBloodGroup.getSelectedItem().toString();
-                String maritialStatus=selectMaritialStatus.getSelectedItem().toString();
-                String dob=serveyDOB.getText().toString();
-                String dom=serveyDOM.getText().toString();
-                String adhar=adharText.getText().toString().trim();
-                String voter=votertext.getText().toString().trim();
-                String relation=relationText.getText().toString().trim();
-                String phone=numberText.getText().toString().trim();
-                Boolean noAdhar=no_adhar.isChecked();
-                Boolean noVoter=no_voter.isChecked();
-                if(TextUtils.isEmpty(name) || TextUtils.isEmpty(dob) || TextUtils.isEmpty(relation) || TextUtils.isEmpty(phone) ||(maritialStatus.equals("married") && TextUtils.isEmpty(dom))){
-                    Toast.makeText(inst, "You must fill all the fields", Toast.LENGTH_SHORT).show();
-                }else{
-                    Servey servey=new Servey();
-                    servey.setAdhar(adhar);
-                    servey.setBloodGroup(bloodGroup);
-                    servey.setDOB(dob);
-                    servey.setDOM(dom);
-                    servey.setGender(gender);
-                    servey.setMaritialStatus(maritialStatus);
-                    servey.setName(name);
-                    servey.setVoter(voter);
-                    servey.setRelation(relation);
-                    servey.setNoAdhar(noAdhar);
-                    servey.setNoVoter(noVoter);
-                    servey.setPhone(phone);
-                    inst.data[getAdapterPosition()]=servey;
-                    saveButton.setText("update");
-                    Toast.makeText(inst, "Saved Successfully", Toast.LENGTH_SHORT).show();
-                }
 
-            }
-        });
     }
 
     public void setPosition(int size){
         positionText.setText((getAdapterPosition()+1)+"/"+size);
+    }
+    public void setClick(final int position){
+        MyClickListener listener= new MyClickListener();
+        listener.updatePosition(position);
+        saveButton.setOnClickListener(listener);
+    }
+    private class MyClickListener implements View.OnClickListener {
+        private int position;
+
+        public void updatePosition(int position) {
+            this.position = position;
+        }
+        @Override
+        public void onClick(View v) {
+            String name=nameText.getText().toString().trim();
+            String gender=selectGender.getSelectedItem().toString();
+            String bloodGroup=selectBloodGroup.getSelectedItem().toString();
+            String maritialStatus=selectMaritialStatus.getSelectedItem().toString();
+            String dob=serveyDOB.getText().toString();
+            String dom=serveyDOM.getText().toString();
+            String adhar=adharText.getText().toString().trim();
+            String voter=votertext.getText().toString().trim();
+            String relation=relationText.getText().toString().trim();
+            String phone=numberText.getText().toString().trim();
+            Boolean noAdhar=no_adhar.isChecked();
+            Boolean noVoter=no_voter.isChecked();
+            if(TextUtils.isEmpty(name) || TextUtils.isEmpty(dob) || TextUtils.isEmpty(relation) || TextUtils.isEmpty(phone) ||(maritialStatus.equals("married") && TextUtils.isEmpty(dom))){
+                Toast.makeText(inst, "You must fill all the fields", Toast.LENGTH_SHORT).show();
+            }else{
+                Servey servey=new Servey();
+                servey.setAdhar(adhar);
+                servey.setBloodGroup(bloodGroup);
+                servey.setDOB(dob);
+                servey.setDOM(dom);
+                servey.setGender(gender);
+                servey.setMaritialStatus(maritialStatus);
+                servey.setName(name);
+                servey.setVoter(voter);
+                servey.setRelation(relation);
+                servey.setNoAdhar(noAdhar);
+                servey.setNoVoter(noVoter);
+                servey.setPhone(phone);
+                inst.data[getAdapterPosition()]=servey;
+                saveButton.setText("update");
+                Toast.makeText(inst, "Saved Successfully", Toast.LENGTH_SHORT).show();
+            }
+
+        }
     }
 }
