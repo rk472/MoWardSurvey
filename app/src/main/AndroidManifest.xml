@@ -35,6 +35,8 @@
         <activity android:name=".ViewDataActivity" />
         <activity android:name=".PersonDataActivity"
             android:theme="@style/NoBar"/>
+        <activity android:name=".SurveyItemNewActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
