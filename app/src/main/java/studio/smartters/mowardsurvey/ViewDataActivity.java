@@ -89,7 +89,7 @@ public class ViewDataActivity extends AppCompatActivity {
                 }
                 return res.toString();
             } catch (IOException e) {
-                return "Some unknown error occurred";
+                return "Unable to reach server !";
             }
         }
 

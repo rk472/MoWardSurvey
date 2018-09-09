@@ -75,7 +75,7 @@
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="PIN Code"
+                            android:hint="Pin Code"
                             android:id="@+id/family_pin"
                             android:maxLength="6"
                             android:inputType="number"/>

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -39,12 +40,15 @@ public class DataViewHolder extends RecyclerView.ViewHolder {
         callButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Intent.ACTION_CALL);
-                i.setData(Uri.parse("tel:" + number));
-                if (ActivityCompat.checkSelfPermission(a, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    return;
+                if (ContextCompat.checkSelfPermission(a, Manifest.permission.CALL_PHONE)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(a,new String[]{Manifest.permission.CALL_PHONE},1);
+                }else{
+                    Intent i = new Intent(Intent.ACTION_CALL);
+                    i.setData(Uri.parse("tel:" + number));
+                    a.startActivity(i);
                 }
-                a.startActivity(i);
+
             }
         });
     }

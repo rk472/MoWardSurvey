@@ -14,7 +14,7 @@
     <string name="continue_text">If you go from this page to the next page you won\'tbe able to come back again. So kindly check all the details filled correctly or not. Do you really want to continue?</string>
     <string-array name="gen">
         <item>Male</item>
-        <item>FeMale</item>
+        <item>Female</item>
         <item>Other</item>
     </string-array>
     <string-array name="blood">

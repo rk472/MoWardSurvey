@@ -1,6 +1,6 @@
 package studio.smartters.mowardsurvey.POJO;
 
-public class Servey {
+public class Survey {
     private String name,gender,bloodGroup,maritialStatus,DOB,DOM,adhar,voter,relation,phone;
     private Boolean noAdhar,noVoter;
 

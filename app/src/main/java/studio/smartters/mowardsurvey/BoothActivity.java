@@ -149,7 +149,7 @@ public class BoothActivity extends AppCompatActivity {
                 }
                 return "Message sent Successfully";
             } catch (IOException e) {
-                return "Some unknown error occurred";
+                return "Unable to reach server !";
             }
         }
 
@@ -159,7 +159,7 @@ public class BoothActivity extends AppCompatActivity {
             super.onPostExecute(s);
             if(s.equalsIgnoreCase("Message sent Successfully"))
                 messageText.setText("");
-                Toast.makeText(BoothActivity.this, "", Toast.LENGTH_SHORT).show();
+            else   Toast.makeText(BoothActivity.this, s, Toast.LENGTH_SHORT).show();
 
         }
     }

@@ -42,7 +42,7 @@ import java.net.URLConnection;
 import java.util.Calendar;
 import java.util.Objects;
 
-import studio.smartters.mowardsurvey.POJO.Servey;
+import studio.smartters.mowardsurvey.POJO.Survey;
 
 public class SurveyItemNewActivity extends AppCompatActivity {
 
@@ -50,7 +50,7 @@ public class SurveyItemNewActivity extends AppCompatActivity {
     private static SurveyItemNewActivity inst;
     private int numberOfMember=0;
     private PlaceholderFragment[] fragments;
-    public Servey data[];
+    public Survey data[];
     private ProgressDialog p;
     private ViewPager mViewPager;
     @Override
@@ -64,7 +64,7 @@ public class SurveyItemNewActivity extends AppCompatActivity {
         try {
             json = new JSONObject(jsonData);
             numberOfMember=Integer.parseInt(json.getString("member_no"));
-            data=new Servey[numberOfMember];
+            data=new Survey[numberOfMember];
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -230,7 +230,7 @@ public class SurveyItemNewActivity extends AppCompatActivity {
                     }else if(phone.length()<10){
                         Toast.makeText(inst, "Invalid phone number", Toast.LENGTH_SHORT).show();
                     }else{
-                        Servey servey=new Servey();
+                        Survey servey=new Survey();
                         servey.setAdhar(adhar);
                         servey.setBloodGroup(bloodGroup);
                         servey.setDOB(dob);
@@ -287,7 +287,7 @@ public class SurveyItemNewActivity extends AppCompatActivity {
             p.setCancelable(false);
             p.show();
             JSONArray arr=new JSONArray();
-            for(Servey s:data){
+            for(Survey s:data){
                 JSONObject json=new JSONObject();
 
                 json.put("name",s.getName());
@@ -321,7 +321,7 @@ public class SurveyItemNewActivity extends AppCompatActivity {
     }
 
     boolean canSave(){
-        for(Servey s:data){
+        for(Survey s:data){
             if(s==null){
                 return false;
             }
@@ -345,7 +345,7 @@ public class SurveyItemNewActivity extends AppCompatActivity {
                 }
                 return res.toString();
             } catch (IOException e) {
-                return "Some unknown error occurred";
+                return "Unable to reach server !";
             }
 
         }

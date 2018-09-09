@@ -49,6 +49,8 @@ public class CreateDialogBooth extends Dialog {
                 String phone = et_phone.getText().toString().trim();
                 if(TextUtils.isEmpty(name)||TextUtils.isEmpty(phone)||TextUtils.isEmpty(desig)) {
                     Toast.makeText(context, "Fields can't be empty..", Toast.LENGTH_SHORT).show();
+                }else if(phone.length()<10){
+                    Toast.makeText(context, "Invalid phone number", Toast.LENGTH_SHORT).show();
                 }else{
                     activity.p=new ProgressDialog(c);
                     activity.p.setTitle("Please wait");
@@ -78,12 +80,9 @@ public class CreateDialogBooth extends Dialog {
                     data=ir.read();
                 }
                 return res;
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
             } catch (IOException e) {
-                e.printStackTrace();
+                return "Unable to reach server !";
             }
-            return null;
         }
 
         @Override
@@ -91,17 +90,16 @@ public class CreateDialogBooth extends Dialog {
             super.onPostExecute(s);
             activity.p.dismiss();
             try {
-                Log.e("err",s);
                 JSONObject json=new JSONObject(s);
                 if(json.getBoolean("status")){
                     Toast.makeText(c, "Added Successfully", Toast.LENGTH_SHORT).show();
                     activity.refresh();
                     dismiss();
                 }else{
-                    Toast.makeText(c, "Some error occurred...try again later..", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(c, "can't add the member", Toast.LENGTH_SHORT).show();
                 }
             } catch (JSONException e) {
-                e.printStackTrace();
+                Toast.makeText(activity, s, Toast.LENGTH_SHORT).show();
             }
         }
     }

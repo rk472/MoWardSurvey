@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageButton;
@@ -40,12 +41,14 @@ public class HelpViewHolder extends RecyclerView.ViewHolder {
         callButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Intent.ACTION_CALL);
-                i.setData(Uri.parse("tel" + number));
-                if (ActivityCompat.checkSelfPermission(HelpRequestActivity.getInstance(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    return;
+                if (ContextCompat.checkSelfPermission(HelpRequestActivity.getInstance(), Manifest.permission.CALL_PHONE)
+                        != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(HelpRequestActivity.getInstance(),new String[]{Manifest.permission.CALL_PHONE},1);
+                }else {
+                    Intent i = new Intent(Intent.ACTION_CALL);
+                    i.setData(Uri.parse("tel" + number));
+                    HelpRequestActivity.getInstance().startActivity(i);
                 }
-                HelpRequestActivity.getInstance().startActivity(i);
             }
         });
     }
