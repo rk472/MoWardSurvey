@@ -93,7 +93,7 @@ public class SurveyMainActivity extends AppCompatActivity {
                                 .setPositiveButton("Yes, Sure", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        Intent ii = new Intent(SurveyMainActivity.this, SurveyItemActivity.class);
+                                        Intent ii = new Intent(SurveyMainActivity.this, SurveyItemNewActivity.class);
                                         ii.putExtra("json_data", jsonData);
                                         startActivity(ii);
                                         finish();
