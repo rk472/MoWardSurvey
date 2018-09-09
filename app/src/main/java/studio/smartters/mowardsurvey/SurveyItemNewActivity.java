@@ -52,6 +52,7 @@ public class SurveyItemNewActivity extends AppCompatActivity {
     private PlaceholderFragment[] fragments;
     public Servey data[];
     private ProgressDialog p;
+    private ViewPager mViewPager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,12 +76,8 @@ public class SurveyItemNewActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Enter Member Details");
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
         SectionsPagerAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-
-        // Set up the ViewPager with the sections adapter.
-        ViewPager mViewPager = findViewById(R.id.container);
+        mViewPager = findViewById(R.id.container);
         mViewPager.setOffscreenPageLimit(numberOfMember);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
@@ -93,19 +90,13 @@ public class SurveyItemNewActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_survey_item_new, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             if(canSave()){
                 upload();
@@ -114,7 +105,6 @@ public class SurveyItemNewActivity extends AppCompatActivity {
             }
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -159,9 +149,9 @@ public class SurveyItemNewActivity extends AppCompatActivity {
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     if(position==0) {
                         serveyDOM.setEnabled(true);
-                        serveyDOM.setText("");
                     }
                     else{
+                        serveyDOM.setText("");
                         serveyDOM.setEnabled(false);
                     }
                 }
@@ -233,8 +223,12 @@ public class SurveyItemNewActivity extends AppCompatActivity {
                     String phone=numberText.getText().toString().trim();
                     Boolean noAdhar=no_adhar.isChecked();
                     Boolean noVoter=no_voter.isChecked();
-                    if(TextUtils.isEmpty(name) || TextUtils.isEmpty(dob) || TextUtils.isEmpty(relation) || TextUtils.isEmpty(phone) ||(maritialStatus.equals("married") && TextUtils.isEmpty(dom))){
+                    if(TextUtils.isEmpty(name) || TextUtils.isEmpty(dob) || TextUtils.isEmpty(relation) || TextUtils.isEmpty(phone) ){
                         Toast.makeText(inst, "You must fill all the fields", Toast.LENGTH_SHORT).show();
+                    }else if(maritialStatus.equalsIgnoreCase("married") && TextUtils.isEmpty(dom)){
+                        Toast.makeText(inst, "You must fill the date of marriage", Toast.LENGTH_SHORT).show();
+                    }else if(phone.length()<10){
+                        Toast.makeText(inst, "Invalid phone number", Toast.LENGTH_SHORT).show();
                     }else{
                         Servey servey=new Servey();
                         servey.setAdhar(adhar);
@@ -252,6 +246,7 @@ public class SurveyItemNewActivity extends AppCompatActivity {
                         inst.data[pageNumber]=servey;
                         saveButton.setText("update");
                         Toast.makeText(inst, "Saved Successfully", Toast.LENGTH_SHORT).show();
+                        SurveyItemNewActivity.getInstance().mViewPager.setCurrentItem(SurveyItemNewActivity.getInstance().mViewPager.getCurrentItem()+1);
                     }
                 }
             });
@@ -274,8 +269,6 @@ public class SurveyItemNewActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
             return fragments[position];
         }
 

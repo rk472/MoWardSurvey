@@ -8,6 +8,7 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -65,6 +66,12 @@ public class SurveyMainActivity extends AppCompatActivity {
                 if(!(mMember.equals("")||mName.equals("")||mAddress.equals("")||mPhone.equals("")||mPin.equals(""))) {
                     if(Integer.parseInt(mMember)<1){
                         Snackbar.make(view, "Members must be more than 0", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                    }else if(mPin.length()<6){
+                        Snackbar.make(view, "Invalid pin", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                    }else if(mPhone.length()<10){
+                        Snackbar.make(view, "Invalid phone number", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
                     }else {
                         JSONObject jsonObject = new JSONObject();
