@@ -101,7 +101,7 @@ public class ImageFragment extends Fragment {
                             path.add(j.getString("url"));
                             count++;
                         } catch (JSONException e) {
-                            // Toast.makeText(getActivity(),e.getMessage(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getActivity(),e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                         PhotoAdapter p = new PhotoAdapter(getActivity(), name, path);
                         list.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
