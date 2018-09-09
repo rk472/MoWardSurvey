@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".NoAdharActivity">
+    tools:context=".NoVoterActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="65sp"
@@ -25,11 +25,11 @@
 
                 <ImageView
                     android:layout_width="0dp"
-                    android:layout_gravity="center"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8sp"
                     android:layout_marginTop="8sp"
                     android:layout_weight="2"
+                    android:layout_gravity="center"
                     android:src="@drawable/search_vect" />
 
                 <LinearLayout

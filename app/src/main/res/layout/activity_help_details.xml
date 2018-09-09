@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HelpDetailsActivity"
-    android:weightSum="3"
+    android:weightSum="5"
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:layout_weight="2">
+        android:layout_weight="4">
         <ScrollView
             android:layout_width="match_parent"
             android:fillViewport="true"
@@ -84,6 +84,27 @@
                     android:fontFamily="@font/miriam_libre_new"
                     android:text="Sample TEXT"
                     android:textSize="18sp" />
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="20sp"
+                    android:layout_marginRight="20sp"
+                    android:layout_marginTop="10sp"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="400"
+                    android:backgroundTint="@color/colorAccent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:id="@+id/help_review"
+                        android:hint="What Action Taken ?"
+                        android:ems="15"
+                        android:maxLength="400"
+                        android:backgroundTint="@color/colorAccentDark"
+                        android:inputType="textMultiLine"
+                        android:lines="4"
+                        android:maxLines="4"
+                        android:layout_height="wrap_content" />
+                </android.support.design.widget.TextInputLayout>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
@@ -116,7 +137,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="resolved"
+                android:text="resolved ? "
                 android:textSize="17sp"
                 android:textColor="#ffffff"
                 android:layout_margin="15sp"

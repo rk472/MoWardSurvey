@@ -1,5 +1,6 @@
 package studio.smartters.mowardsurvey;
 
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -29,14 +30,14 @@ import java.util.List;
 import studio.smartters.mowardsurvey.adapter.DataAdapter;
 import studio.smartters.mowardsurvey.others.Constants;
 
-public class NoAdharActivity extends AppCompatActivity {
+public class NoVoterActivity extends AppCompatActivity {
     private EditText etSearch;
     private String id;
     private RecyclerView list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_no_adhar);
+        setContentView(R.layout.activity_no_voter);
         etSearch = findViewById(R.id.search_name_text);
         list=findViewById(R.id.search_name_list);
         list.setHasFixedSize(true);
@@ -58,7 +59,7 @@ public class NoAdharActivity extends AppCompatActivity {
     }
     void refresh(String name){
         GetDataTask gt=new GetDataTask();
-        gt.execute(Constants.URL+"getNoAdharBySurveyMan?id="+id+"&name="+name);
+        gt.execute(Constants.URL+"getNoVoterBySurveyMan?id="+id+"&name="+name);
     }
     public void goBack(View view) {
         finish();
@@ -67,6 +68,7 @@ public class NoAdharActivity extends AppCompatActivity {
     public void clearText(View view) {
         etSearch.setText("");
     }
+    @SuppressLint("StaticFieldLeak")
     private class GetDataTask extends AsyncTask<String,Void,String> {
 
         @Override
@@ -102,16 +104,16 @@ public class NoAdharActivity extends AppCompatActivity {
                     Log.e("arr", arr.getJSONObject(i).toString());
                 }
 
-                DataAdapter d = new DataAdapter(jsonList, NoAdharActivity.this);
+                DataAdapter d = new DataAdapter(jsonList, NoVoterActivity.this);
                 list.setAdapter(d);
 
             } catch(JSONException e){
                 if (s.equals("err"))
-                    Toast.makeText(NoAdharActivity.this, "Unable to reach server !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NoVoterActivity.this, "Unable to reach server !", Toast.LENGTH_SHORT).show();
                 else
-                    Toast.makeText(NoAdharActivity.this, s, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NoVoterActivity.this, s, Toast.LENGTH_SHORT).show();
             }
-
         }
     }
+
 }

@@ -50,7 +50,12 @@
         <activity
             android:name=".HelpDetailsActivity"
             android:label="Person Details" />
-        <activity android:name=".NoAdharActivity"></activity>
+        <activity android:name=".NoAdharActivity"
+            android:label="No Adhar List"
+            android:parentActivityName=".HomeActivity"/>
+        <activity android:name=".NoVoterActivity"
+            android:label="No Voter List"
+            android:parentActivityName=".HomeActivity"/>
     </application>
 
 </manifest>

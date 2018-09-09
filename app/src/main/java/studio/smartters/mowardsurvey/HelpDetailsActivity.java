@@ -6,9 +6,11 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +30,7 @@ import studio.smartters.mowardsurvey.others.Constants;
 public class HelpDetailsActivity extends AppCompatActivity {
     private TextView nameText, bodyText, addressText;
     private JSONObject json;
-
+    private EditText etReview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +38,7 @@ public class HelpDetailsActivity extends AppCompatActivity {
         nameText = findViewById(R.id.help_name);
         bodyText = findViewById(R.id.help_body);
         addressText = findViewById(R.id.help_address);
+        etReview = findViewById(R.id.help_review);
         String data = getIntent().getExtras().getString("json_data");
         try {
             json = new JSONObject(data);
@@ -61,11 +64,17 @@ public class HelpDetailsActivity extends AppCompatActivity {
         }
     }
     public void resolve(View v){
-        ResolveTask rt=new ResolveTask();
-        try {
-            rt.execute(Constants.URL+"changeHelpStatus?id="+json.getString("id"));
-        } catch (JSONException e) {
-            e.printStackTrace();
+        String revData = etReview.getText().toString().trim();
+        if (revData.length()>0) {
+            ResolveTask rt = new ResolveTask();
+            try {
+                rt.execute(Constants.URL + "changeHelpStatus?id=" + json.getString("id")+"&review="+revData);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }else{
+            Snackbar.make(v, "Enter review before resolving.", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
         }
     }
     private class ResolveTask extends AsyncTask<String,Void,String> {

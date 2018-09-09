@@ -75,6 +75,12 @@ public class HomeActivity extends AppCompatActivity {
         }else if(id == R.id.action_dataview){
             startActivity(new Intent(this,ViewDataActivity.class));
             return true;
+        }else if (id == R.id.action_noadhar){
+            startActivity(new Intent(this,NoAdharActivity.class));
+            return true;
+        }else if(id == R.id.action_novoter){
+            startActivity(new Intent(this,NoVoterActivity.class));
+            return true;
         }else if(id == R.id.action_logout){
             SharedPreferences s=getSharedPreferences("login",MODE_PRIVATE);
             SharedPreferences.Editor e=s.edit();
