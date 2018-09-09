@@ -1,6 +1,7 @@
 package studio.smartters.mowardsurvey.ViewHolder;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -9,7 +10,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,7 +21,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -81,6 +80,7 @@ public class MemberViewHolder extends RecyclerView.ViewHolder {
         });
 
     }
+    @SuppressLint("StaticFieldLeak")
     private class RemoveTask extends AsyncTask<String,Void,String> {
 
         @Override
@@ -91,18 +91,16 @@ public class MemberViewHolder extends RecyclerView.ViewHolder {
                 InputStream is=con.getInputStream();
                 InputStreamReader ir=new InputStreamReader(is);
                 int data=ir.read();
-                String res="";
+                StringBuilder res= new StringBuilder();
                 while(data!=-1){
-                    res+=(char)data;
+                    res.append((char) data);
                     data=ir.read();
                 }
-                return res;
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
+                return res.toString();
             } catch (IOException e) {
-                e.printStackTrace();
+                return "Unable to reach server !";
             }
-            return null;
+
         }
 
         @Override
@@ -110,7 +108,6 @@ public class MemberViewHolder extends RecyclerView.ViewHolder {
             super.onPostExecute(s);
             activity.p.dismiss();
             try {
-                Log.e("err",s);
                 JSONObject json=new JSONObject(s);
                 if(json.getBoolean("status")){
                     Toast.makeText(v.getContext(), "removed Successfully", Toast.LENGTH_SHORT).show();
@@ -119,7 +116,7 @@ public class MemberViewHolder extends RecyclerView.ViewHolder {
                     Toast.makeText(v.getContext(), "Some error occurred...try again later..", Toast.LENGTH_SHORT).show();
                 }
             } catch (JSONException e) {
-                e.printStackTrace();
+                Toast.makeText(activity, s, Toast.LENGTH_SHORT).show();
             }
         }
     }
