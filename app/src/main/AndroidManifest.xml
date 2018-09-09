@@ -23,20 +23,34 @@
         <activity android:name=".LoginActivity" />
         <activity
             android:name=".SurveyMainActivity"
-            android:label="Survey Main" />
+            android:label="Enter Family Details"
+            android:parentActivityName=".HomeActivity" />
         <activity
             android:name=".SurveyItemActivity"
-            android:label="Member Details" />
+            android:label="Enter Member Details" />
         <activity
             android:name=".HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".BoothActivity" />
-        <activity android:name=".ViewDataActivity" />
+        <activity
+            android:name=".BoothActivity"
+            android:label="Booth Committee"
+            android:parentActivityName=".HomeActivity" />
+        <activity
+            android:name=".ViewDataActivity"
+            android:label="All Survey Data"
+            android:parentActivityName=".HomeActivity" />
         <activity
             android:name=".PersonDataActivity"
             android:theme="@style/NoBar" />
-        <activity android:name=".HelpRequestActivity"></activity>
+        <activity
+            android:name=".HelpRequestActivity"
+            android:label="All Help Requests"
+            android:parentActivityName=".HomeActivity" />
+        <activity
+            android:name=".HelpDetailsActivity"
+            android:label="Person Details" />
+        <activity android:name=".NoAdharActivity"></activity>
     </application>
 
 </manifest>

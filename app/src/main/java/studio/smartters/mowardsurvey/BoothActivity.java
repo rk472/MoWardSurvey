@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -42,6 +43,7 @@ public class BoothActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booth);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         inst = this;
         id=getSharedPreferences("login",MODE_PRIVATE).getString("id","0");
         messageText=findViewById(R.id.message_booth);
@@ -84,7 +86,7 @@ public class BoothActivity extends AppCompatActivity {
                     num += ("," + phones.get(i));
                 }
                 MessageTask ot = new MessageTask();
-                ot.execute("http://sms.forcesms.info/sendSMS?username=jtbabu&message=Message From the Survey man :\n" + msg + "&sendername=JAVATC&smstype=TRANS&numbers=" + num + "&apikey=261819f9-0181-4274-941b-c8602ef5225d");
+                ot.execute("http://sms.forcesms.info/sendSMS?username=jtbabu&message=Mo Ward Survey Alert ! From: MoWard Surveyor,"+ msg + "&sendername=JAVATC&smstype=TRANS&numbers=" + num + "&apikey=261819f9-0181-4274-941b-c8602ef5225d");
             }
         }
     }

@@ -21,6 +21,18 @@
         android:title="Help Requests"
         app:showAsAction="never" />
     <item
+        android:id="@+id/action_noadhar"
+        android:orderInCategory="100"
+        android:icon="@drawable/booth_vect"
+        android:title="No Adhar List"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_novoter"
+        android:orderInCategory="100"
+        android:icon="@drawable/booth_vect"
+        android:title="No Voter List"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/action_logout"
         android:orderInCategory="100"
         android:icon="@drawable/booth_vect"

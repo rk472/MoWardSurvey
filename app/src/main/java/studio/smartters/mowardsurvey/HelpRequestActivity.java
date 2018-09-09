@@ -35,6 +35,7 @@ public class HelpRequestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_help_request);
         inst=this;
         list=findViewById(R.id.help_search_name_list);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         list.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         list.setHasFixedSize(true);
         id=getSharedPreferences("login",MODE_PRIVATE).getString("id","0");

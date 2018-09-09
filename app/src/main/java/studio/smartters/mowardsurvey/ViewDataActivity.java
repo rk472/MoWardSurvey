@@ -38,6 +38,7 @@ public class ViewDataActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_data);
         etSearch = findViewById(R.id.search_name_text);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         list=findViewById(R.id.view_survey_list);
         list.setHasFixedSize(true);
         list.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));

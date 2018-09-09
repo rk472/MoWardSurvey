@@ -27,6 +27,7 @@ public class SurveyMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey_main);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         otherCont = findViewById(R.id.other_container);
         otherCont.setVisibility(View.INVISIBLE);
         etAddress = findViewById(R.id.family_address);
