@@ -105,7 +105,7 @@ public class VideoFragment extends Fragment {
                             path.add(j.getString("url"));
                             count++;
                         } catch (JSONException e) {
-                            //Toast.makeText(getActivity(),e.getMessage(), Toast.LENGTH_SHORT).show();
+
                         }
                     }
                     VideoAdapter p = new VideoAdapter(getActivity(), name, path);
