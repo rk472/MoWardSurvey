@@ -1,6 +1,7 @@
 package studio.smartters.mowardsurvey;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -16,39 +17,37 @@ import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
+
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Objects;
 
 import studio.smartters.mowardsurvey.others.Constants;
 
 
 public class HelpDetailsActivity extends AppCompatActivity {
-    private TextView nameText, bodyText, addressText;
     private JSONObject json;
     private EditText etReview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_help_details);
-        nameText = findViewById(R.id.help_name);
-        bodyText = findViewById(R.id.help_body);
-        addressText = findViewById(R.id.help_address);
+        TextView nameText = findViewById(R.id.help_name);
+        TextView bodyText = findViewById(R.id.help_body);
+        TextView addressText = findViewById(R.id.help_address);
         etReview = findViewById(R.id.help_review);
-        String data = getIntent().getExtras().getString("json_data");
+        String data = Objects.requireNonNull(getIntent().getExtras()).getString("json_data");
         try {
             json = new JSONObject(data);
             nameText.setText(json.getString("name"));
             bodyText.setText(json.getString("body"));
             addressText.setText(json.getString("address"));
         } catch (JSONException e) {
-            e.printStackTrace();
+            finish();
         }
 
     }
@@ -79,6 +78,7 @@ public class HelpDetailsActivity extends AppCompatActivity {
                     .setAction("Action", null).show();
         }
     }
+    @SuppressLint("StaticFieldLeak")
     private class ResolveTask extends AsyncTask<String,Void,String> {
 
         @Override
@@ -89,18 +89,15 @@ public class HelpDetailsActivity extends AppCompatActivity {
                 InputStream is=con.getInputStream();
                 InputStreamReader ir=new InputStreamReader(is);
                 int data=ir.read();
-                String res="";
+                StringBuilder res= new StringBuilder();
                 while(data!=-1){
-                    res+=(char)data;
+                    res.append((char) data);
                     data=ir.read();
                 }
-                return res;
-            } catch (MalformedURLException e) {
-                //Toast.makeText(SearchNameActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                return res.toString();
             } catch (IOException e) {
-                //Toast.makeText(SearchNameActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                return "Unable to reach server !";
             }
-            return "no";
         }
 
         @Override

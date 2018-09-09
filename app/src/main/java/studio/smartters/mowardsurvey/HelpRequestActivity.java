@@ -1,9 +1,10 @@
 package studio.smartters.mowardsurvey;
 
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -16,16 +17,17 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import studio.smartters.mowardsurvey.adapter.HelpAdapter;
 import studio.smartters.mowardsurvey.others.Constants;
 
 public class HelpRequestActivity extends AppCompatActivity {
+    @SuppressLint("StaticFieldLeak")
     private static HelpRequestActivity inst;
     private RecyclerView list;
     private String id;
@@ -35,7 +37,7 @@ public class HelpRequestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_help_request);
         inst=this;
         list=findViewById(R.id.help_search_name_list);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         list.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         list.setHasFixedSize(true);
         id=getSharedPreferences("login",MODE_PRIVATE).getString("id","0");
@@ -48,6 +50,7 @@ public class HelpRequestActivity extends AppCompatActivity {
     public static HelpRequestActivity getInstance(){
         return inst;
     }
+    @SuppressLint("StaticFieldLeak")
     private class GetDataTask extends AsyncTask<String,Void,String> {
 
         @Override
@@ -58,18 +61,16 @@ public class HelpRequestActivity extends AppCompatActivity {
                 InputStream is=con.getInputStream();
                 InputStreamReader ir=new InputStreamReader(is);
                 int data=ir.read();
-                String res="";
+                StringBuilder res= new StringBuilder();
                 while(data!=-1){
-                    res+=(char)data;
+                    res.append((char) data);
                     data=ir.read();
                 }
-                return res;
-            } catch (MalformedURLException e) {
-                //Toast.makeText(SearchNameActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                return res.toString();
             } catch (IOException e) {
-                //Toast.makeText(SearchNameActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                return "Unable to reach server !";
             }
-            return "";
+
         }
 
         @Override
@@ -90,7 +91,7 @@ public class HelpRequestActivity extends AppCompatActivity {
                 list.setAdapter(d);
 
             } catch(JSONException e){
-                Toast.makeText(HelpRequestActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(HelpRequestActivity.this, s, Toast.LENGTH_SHORT).show();
             }
 
         }

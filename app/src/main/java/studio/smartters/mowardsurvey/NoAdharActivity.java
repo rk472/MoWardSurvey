@@ -1,5 +1,6 @@
 package studio.smartters.mowardsurvey;
 
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +9,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -20,7 +20,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -57,7 +56,7 @@ public class NoAdharActivity extends AppCompatActivity {
         });
     }
     void refresh(String name){
-        GetDataTask gt=new GetDataTask();
+        GetDataTask gt = new GetDataTask();
         gt.execute(Constants.URL+"getNoAdharBySurveyMan?id="+id+"&name="+name);
     }
     public void goBack(View view) {
@@ -67,6 +66,7 @@ public class NoAdharActivity extends AppCompatActivity {
     public void clearText(View view) {
         etSearch.setText("");
     }
+    @SuppressLint("StaticFieldLeak")
     private class GetDataTask extends AsyncTask<String,Void,String> {
 
         @Override
@@ -77,14 +77,14 @@ public class NoAdharActivity extends AppCompatActivity {
                 InputStream is=con.getInputStream();
                 InputStreamReader ir=new InputStreamReader(is);
                 int data=ir.read();
-                String res="";
+                StringBuilder res= new StringBuilder();
                 while(data!=-1){
-                    res+=(char)data;
+                    res.append((char) data);
                     data=ir.read();
                 }
-                return res;
+                return res.toString();
             } catch (IOException e) {
-                return "err";
+                return "Unable to reach server !";
             }
         }
 
@@ -99,17 +99,14 @@ public class NoAdharActivity extends AppCompatActivity {
                 List<JSONObject> jsonList = new ArrayList<>();
                 for (int i = 0; i < arr.length(); i++) {
                     jsonList.add(arr.getJSONObject(i));
-                    Log.e("arr", arr.getJSONObject(i).toString());
+                    //Log.e("arr", arr.getJSONObject(i).toString());
                 }
 
                 DataAdapter d = new DataAdapter(jsonList, NoAdharActivity.this);
                 list.setAdapter(d);
 
             } catch(JSONException e){
-                if (s.equals("err"))
-                    Toast.makeText(NoAdharActivity.this, "Unable to reach server !", Toast.LENGTH_SHORT).show();
-                else
-                    Toast.makeText(NoAdharActivity.this, s, Toast.LENGTH_SHORT).show();
+                Toast.makeText(NoAdharActivity.this, s, Toast.LENGTH_SHORT).show();
             }
 
         }

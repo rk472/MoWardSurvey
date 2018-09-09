@@ -1,13 +1,13 @@
 package studio.smartters.mowardsurvey;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -18,7 +18,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -51,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
             lt.execute(Constants.URL+"loginServey?user="+number+"&pass="+pass);
         }
     }
+    @SuppressLint("StaticFieldLeak")
     private class LoginTask extends AsyncTask<String,Void,String>{
 
         @Override
@@ -61,24 +61,15 @@ public class LoginActivity extends AppCompatActivity {
                 InputStream is=con.getInputStream();
                 InputStreamReader ir=new InputStreamReader(is);
                 int data=ir.read();
-                String res="";
+                StringBuilder res= new StringBuilder();
                 while(data!=-1){
-                    res+=(char)data;
+                    res.append((char) data);
                     data=ir.read();
                 }
-                return res;
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
+                return res.toString();
             } catch (IOException e) {
-                e.printStackTrace();
+                return "Unable to reach server !";
             }
-            JSONObject json=new JSONObject();
-            try {
-                json.put("status",0);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            return json.toString();
 
         }
 
@@ -100,10 +91,10 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(new Intent(LoginActivity.this,HomeActivity.class));
                     finish();
                 }else{
-                    Toast.makeText(LoginActivity.this, "Some Error occurred", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Incorrect username or password", Toast.LENGTH_SHORT).show();
                 }
             } catch (JSONException e) {
-                e.printStackTrace();
+                Toast.makeText(LoginActivity.this, s, Toast.LENGTH_SHORT).show();
             }
 
         }

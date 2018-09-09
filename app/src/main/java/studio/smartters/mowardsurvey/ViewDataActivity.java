@@ -1,9 +1,10 @@
 package studio.smartters.mowardsurvey;
 
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -20,11 +21,11 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import studio.smartters.mowardsurvey.adapter.DataAdapter;
 import studio.smartters.mowardsurvey.others.Constants;
@@ -38,7 +39,7 @@ public class ViewDataActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_data);
         etSearch = findViewById(R.id.search_name_text);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         list=findViewById(R.id.view_survey_list);
         list.setHasFixedSize(true);
         list.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
@@ -70,6 +71,7 @@ public class ViewDataActivity extends AppCompatActivity {
         etSearch.setText("");
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class GetDataTask extends AsyncTask<String,Void,String>{
 
         @Override
@@ -80,18 +82,15 @@ public class ViewDataActivity extends AppCompatActivity {
                 InputStream is=con.getInputStream();
                 InputStreamReader ir=new InputStreamReader(is);
                 int data=ir.read();
-                String res="";
+                StringBuilder res= new StringBuilder();
                 while(data!=-1){
-                    res+=(char)data;
+                    res.append((char) data);
                     data=ir.read();
                 }
-                return res;
-            } catch (MalformedURLException e) {
-                Toast.makeText(ViewDataActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                return res.toString();
             } catch (IOException e) {
-                Toast.makeText(ViewDataActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                return "Some unknown error occurred";
             }
-            return "";
         }
 
         @Override
@@ -102,17 +101,15 @@ public class ViewDataActivity extends AppCompatActivity {
                 if (arr.length() == 0)
                     Snackbar.make(etSearch, "No data found", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show();
-                    List<JSONObject> jsonList = new ArrayList<>();
-                    for (int i = 0; i < arr.length(); i++) {
-                        jsonList.add(arr.getJSONObject(i));
-                        Log.e("arr", arr.getJSONObject(i).toString());
-                    }
-
-                    DataAdapter d = new DataAdapter(jsonList, ViewDataActivity.this);
-                    list.setAdapter(d);
-
+                List<JSONObject> jsonList = new ArrayList<>();
+                for (int i = 0; i < arr.length(); i++) {
+                    jsonList.add(arr.getJSONObject(i));
+                    Log.e("arr", arr.getJSONObject(i).toString());
+                }
+                DataAdapter d = new DataAdapter(jsonList, ViewDataActivity.this);
+                list.setAdapter(d);
             } catch(JSONException e){
-                    Toast.makeText(ViewDataActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ViewDataActivity.this, s, Toast.LENGTH_SHORT).show();
             }
 
         }

@@ -86,7 +86,7 @@ public class NoVoterActivity extends AppCompatActivity {
                 }
                 return res;
             } catch (IOException e) {
-                return "err";
+                return "Unable to reach server !";
             }
         }
 
@@ -101,17 +101,13 @@ public class NoVoterActivity extends AppCompatActivity {
                 List<JSONObject> jsonList = new ArrayList<>();
                 for (int i = 0; i < arr.length(); i++) {
                     jsonList.add(arr.getJSONObject(i));
-                    Log.e("arr", arr.getJSONObject(i).toString());
                 }
 
                 DataAdapter d = new DataAdapter(jsonList, NoVoterActivity.this);
                 list.setAdapter(d);
 
             } catch(JSONException e){
-                if (s.equals("err"))
-                    Toast.makeText(NoVoterActivity.this, "Unable to reach server !", Toast.LENGTH_SHORT).show();
-                else
-                    Toast.makeText(NoVoterActivity.this, s, Toast.LENGTH_SHORT).show();
+                Toast.makeText(NoVoterActivity.this, s, Toast.LENGTH_SHORT).show();
             }
         }
     }

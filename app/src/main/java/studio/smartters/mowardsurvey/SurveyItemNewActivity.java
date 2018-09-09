@@ -4,18 +4,15 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,7 +20,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -41,18 +37,17 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Calendar;
+import java.util.Objects;
 
 import studio.smartters.mowardsurvey.POJO.Servey;
 
 public class SurveyItemNewActivity extends AppCompatActivity {
 
-    private SectionsPagerAdapter mSectionsPagerAdapter;
+    @SuppressLint("StaticFieldLeak")
     private static SurveyItemNewActivity inst;
-    private ViewPager mViewPager;
     private int numberOfMember=0;
     private PlaceholderFragment[] fragments;
     public Servey data[];
@@ -63,8 +58,8 @@ public class SurveyItemNewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_survey_item_new);
         inst=this;
 
-        String jsonData = getIntent().getExtras().getString("json_data");
-        JSONObject json= null;
+        String jsonData = Objects.requireNonNull(getIntent().getExtras()).getString("json_data");
+        JSONObject json;
         try {
             json = new JSONObject(jsonData);
             numberOfMember=Integer.parseInt(json.getString("member_no"));
@@ -77,14 +72,14 @@ public class SurveyItemNewActivity extends AppCompatActivity {
         for(int i=0;i<fragments.length;i++){
             fragments[i]=new PlaceholderFragment(i,numberOfMember);
         }
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        SectionsPagerAdapter mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        ViewPager mViewPager = findViewById(R.id.container);
         mViewPager.setOffscreenPageLimit(numberOfMember);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
@@ -133,13 +128,13 @@ public class SurveyItemNewActivity extends AppCompatActivity {
         private int pageNumber,totalNumber;
         private EditText nameText,numberText,votertext,adharText,relationText,serveyDOB,serveyDOM;
         private Spinner selectGender,selectBloodGroup,selectMaritialStatus;
-        private View v;
         private CheckBox no_adhar,no_voter;
         private TextView positionText;
         private Button saveButton;
         private SurveyItemNewActivity inst;
+        @SuppressLint("SetTextI18n")
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+        public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View v = inflater.inflate(R.layout.fragment_survey_item_new, container, false);
             nameText=v.findViewById(R.id.survey_name);
@@ -272,7 +267,7 @@ public class SurveyItemNewActivity extends AppCompatActivity {
 
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        public SectionsPagerAdapter(FragmentManager fm) {
+        SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
@@ -318,7 +313,7 @@ public class SurveyItemNewActivity extends AppCompatActivity {
             }
             final JSONObject final1=new JSONObject();
             final1.put("members",arr);
-            JSONObject json=new JSONObject(getIntent().getExtras().getString("json_data"));
+            JSONObject json=new JSONObject(Objects.requireNonNull(getIntent().getExtras()).getString("json_data"));
             final1.put("family",json);
 
            UploadTask ut=new UploadTask();
@@ -339,6 +334,7 @@ public class SurveyItemNewActivity extends AppCompatActivity {
         }
         return  true;
     }
+    @SuppressLint("StaticFieldLeak")
     private class UploadTask extends AsyncTask<String,Void,String> {
         @Override
         protected String doInBackground(String... strings) {
@@ -348,18 +344,16 @@ public class SurveyItemNewActivity extends AppCompatActivity {
                 InputStream is=con.getInputStream();
                 InputStreamReader ir=new InputStreamReader(is);
                 int data=ir.read();
-                String res="";
+                StringBuilder res= new StringBuilder();
                 while(data!=-1){
-                    res+=(char)data;
+                    res.append((char) data);
                     data=ir.read();
                 }
-                return res;
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
+                return res.toString();
             } catch (IOException e) {
-                e.printStackTrace();
+                return "Some unknown error occurred";
             }
-            return "Some unknown error occurred";
+
         }
 
         @Override

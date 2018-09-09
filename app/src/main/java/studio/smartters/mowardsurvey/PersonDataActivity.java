@@ -1,14 +1,15 @@
 package studio.smartters.mowardsurvey;
 
+import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Objects;
 
 public class PersonDataActivity extends AppCompatActivity {
     private EditText etName,etHead,etAddress,etRelation,etContact,etGen,etBlood,etDom,etDob,etMarriage,etAdhar,etVoter;
@@ -30,7 +31,7 @@ public class PersonDataActivity extends AppCompatActivity {
         etMarriage = findViewById(R.id.person_marital_status);
         etAdhar = findViewById(R.id.person_adhar);
         etVoter = findViewById(R.id.person_voter);
-        String jsonData = getIntent().getExtras().getString("json_data");
+        String jsonData = Objects.requireNonNull(getIntent().getExtras()).getString("json_data");
         try {
             setData(new JSONObject(jsonData));
         } catch (JSONException e) {
