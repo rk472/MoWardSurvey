@@ -13,8 +13,8 @@ import studio.smartters.mowardsurvey.ViewHolder.PhotoViewHolder;
 
 
 public class PhotoAdapter extends RecyclerView.Adapter<PhotoViewHolder> {
-    Context c;
-    List name,path;
+    private Context c;
+    private List name,path;
     public PhotoAdapter(Context c, List name,List path) {
         this.c = c;
         this.name=name;

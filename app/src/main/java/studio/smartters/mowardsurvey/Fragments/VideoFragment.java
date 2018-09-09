@@ -1,10 +1,12 @@
 package studio.smartters.mowardsurvey.Fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,6 +35,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import studio.smartters.mowardsurvey.R;
 import studio.smartters.mowardsurvey.adapter.VideoAdapter;
@@ -40,7 +43,6 @@ import studio.smartters.mowardsurvey.others.Constants;
 
 public class VideoFragment extends Fragment {
     private RequestQueue r;
-    private String url= Constants.URL+"getVideos";
     private List<String> name,path;
     private RecyclerView list;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -48,8 +50,9 @@ public class VideoFragment extends Fragment {
     private LinearLayout ln,ll;
     private  boolean loaded = false;
     private TextView tvLoad;
+    @SuppressLint("SetTextI18n")
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_video, container, false);
         list=v.findViewById(R.id.video_list);
@@ -65,13 +68,14 @@ public class VideoFragment extends Fragment {
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
-        Cache c=new DiskBasedCache(getActivity().getCacheDir(),1024*1024);
+        Cache c=new DiskBasedCache(Objects.requireNonNull(getActivity()).getCacheDir(),1024*1024);
         Network n=new BasicNetwork(new HurlStack());
         r=new RequestQueue(c,n);
         r.start();
         refresh();
         return v;
     }
+    @SuppressLint("SetTextI18n")
     private void refresh(){
         loaded = false;
         if(isNetworkAvailable()) {
@@ -87,6 +91,7 @@ public class VideoFragment extends Fragment {
                     }
                 }
             },5000);
+            String url = Constants.URL + "getVideos";
             JsonArrayRequest j = new JsonArrayRequest(Request.Method.POST, url, null, new Response.Listener<JSONArray>() {
                 @Override
                 public void onResponse(JSONArray response) {
@@ -128,6 +133,7 @@ public class VideoFragment extends Fragment {
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) v.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        assert connectivityManager != null;
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }

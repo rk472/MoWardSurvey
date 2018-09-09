@@ -16,8 +16,8 @@ import studio.smartters.mowardsurvey.R;
 import studio.smartters.mowardsurvey.ViewHolder.DataViewHolder;
 
 public class DataAdapter extends RecyclerView.Adapter<DataViewHolder> {
-    List<JSONObject> arr;
-    AppCompatActivity a;
+    private List<JSONObject> arr;
+    private AppCompatActivity a;
     public DataAdapter(List<JSONObject> arr,AppCompatActivity a){
         this.arr=arr;
         this.a=a;

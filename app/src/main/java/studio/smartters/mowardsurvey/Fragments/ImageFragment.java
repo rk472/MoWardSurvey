@@ -1,10 +1,12 @@
 package studio.smartters.mowardsurvey.Fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,6 +35,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import studio.smartters.mowardsurvey.R;
 import studio.smartters.mowardsurvey.adapter.PhotoAdapter;
@@ -40,16 +43,17 @@ import studio.smartters.mowardsurvey.others.Constants;
 
 public class ImageFragment extends Fragment {
     private RequestQueue r;
-    private String url= Constants.URL+"getPhotos";
-    private List name,path;
+    private List<String> name;
+    private List<String> path;
     private RecyclerView list;
     private SwipeRefreshLayout swipeRefreshLayout;
     private View v;
     private LinearLayout ln,ll;
     private  boolean loaded = false;
     private TextView tvLoad;
+    @SuppressLint("SetTextI18n")
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_image, container, false);
         list=v.findViewById(R.id.image_list);
@@ -65,13 +69,14 @@ public class ImageFragment extends Fragment {
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
-        Cache c=new DiskBasedCache(getActivity().getCacheDir(),1024*1024);
+        Cache c=new DiskBasedCache(Objects.requireNonNull(getActivity()).getCacheDir(),1024*1024);
         Network n=new BasicNetwork(new HurlStack());
         r=new RequestQueue(c,n);
         refresh();
 
         return v;
     }
+    @SuppressLint("SetTextI18n")
     private void refresh(){
         loaded = false;
         if(isNetworkAvailable()) {
@@ -87,9 +92,10 @@ public class ImageFragment extends Fragment {
                     }
                 }
             },5000);
-            name = new ArrayList();
-            path = new ArrayList();
+            name = new ArrayList<>();
+            path = new ArrayList<>();
             r.start();
+            String url = Constants.URL + "getPhotos";
             JsonArrayRequest j = new JsonArrayRequest(Request.Method.POST, url, null, new Response.Listener<JSONArray>() {
                 @Override
                 public void onResponse(JSONArray response) {
@@ -100,8 +106,8 @@ public class ImageFragment extends Fragment {
                             name.add(j.getString("name"));
                             path.add(j.getString("url"));
                             count++;
-                        } catch (JSONException e) {
-                            // Toast.makeText(getActivity(),e.getMessage(), Toast.LENGTH_SHORT).show();
+                        } catch (JSONException ignored) {
+
                         }
                         PhotoAdapter p = new PhotoAdapter(getActivity(), name, path);
                         list.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
@@ -130,6 +136,7 @@ public class ImageFragment extends Fragment {
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) v.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        assert connectivityManager != null;
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }

@@ -14,9 +14,9 @@ import studio.smartters.mowardsurvey.ViewHolder.VideoViewHolder;
 
 
 public class VideoAdapter extends Adapter <VideoViewHolder>{
-    Context c;
-    List<String> desc,path;
-    public VideoAdapter(Context c, List desc, List path) {
+    private Context c;
+    private List<String> desc,path;
+    public VideoAdapter(Context c, List<String> desc, List<String> path) {
         this.c=c;
         this.desc=desc;
         this.path=path;
