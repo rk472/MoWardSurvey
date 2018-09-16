@@ -43,7 +43,7 @@ public class ViewDataActivity extends AppCompatActivity {
         list=findViewById(R.id.view_survey_list);
         list.setHasFixedSize(true);
         list.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
-        id=getSharedPreferences("login",MODE_PRIVATE).getString("id","0");
+        id=getIntent().getExtras().getString("id");
         refresh("");
         etSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -60,7 +60,7 @@ public class ViewDataActivity extends AppCompatActivity {
     }
     void refresh(String name){
         GetDataTask gt=new GetDataTask();
-        gt.execute(Constants.URL+"getAllDataBySurveyMan?id="+id+"&name="+name);
+        gt.execute(Constants.URL+"getAllDataByFamily?id="+id+"&name="+name);
     }
 
     public void goBack(View view) {

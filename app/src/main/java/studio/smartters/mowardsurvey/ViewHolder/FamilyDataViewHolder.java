@@ -58,12 +58,12 @@ public class FamilyDataViewHolder extends RecyclerView.ViewHolder {
             }
         });
     }
-    public void setClick(final String json, final AppCompatActivity a){
+    public void setClick(final String id, final AppCompatActivity a){
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(a,ViewDataActivity.class);
-                i.putExtra("json_data",json);
+                i.putExtra("id",id);
                 a.startActivity(i);
             }
         });

@@ -31,11 +31,11 @@ public class FamilyDataAdapter extends RecyclerView.Adapter<FamilyDataViewHolder
     @Override
     public void onBindViewHolder(@NonNull FamilyDataViewHolder holder, int position) {
         try {
-            holder.setAddress(arr.get(position).getString("phead"));
-            holder.setNumber(arr.get(position).getString("phead"));
-            holder.setName(arr.get(position).getString("pname"));
-            holder.setCall(arr.get(position).getString("pcontact"),a);
-            holder.setClick(arr.get(position).toString(),a);
+            holder.setAddress(arr.get(position).getString("address"));
+            holder.setNumber(position+1+"");
+            holder.setName(arr.get(position).getString("head_name"));
+            holder.setCall(arr.get(position).getString("phone"),a);
+            holder.setClick(arr.get(position).getString("id"),a);
         } catch (JSONException e) {
             e.printStackTrace();
         }

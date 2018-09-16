@@ -14,12 +14,10 @@ import tcking.github.com.giraffeplayer2.VideoInfo;
 public class VideoViewHolder extends RecyclerView.ViewHolder {
     private ImageView img;
     private TextView nameText;
-    private View v;
     public VideoViewHolder(View itemView) {
         super(itemView);
         img=itemView.findViewById(R.id.video_click);
         nameText=itemView.findViewById(R.id.video_title);
-        v=itemView;
     }
     public void setName(String name){
         nameText.setText(name);

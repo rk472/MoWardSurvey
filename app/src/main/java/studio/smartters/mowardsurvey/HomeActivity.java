@@ -79,7 +79,7 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(new Intent(this,HelpRequestActivity.class));
             return true;
         }else if(id == R.id.action_dataview){
-            startActivity(new Intent(this,ViewDataActivity.class));
+            startActivity(new Intent(this,ViewFamilyActivity.class));
             return true;
         }else if (id == R.id.action_noadhar){
             startActivity(new Intent(this,NoAdharActivity.class));

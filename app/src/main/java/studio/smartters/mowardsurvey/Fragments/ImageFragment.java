@@ -123,7 +123,7 @@ public class ImageFragment extends Fragment {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Unable to reach server !", Toast.LENGTH_SHORT).show();
                 }
             });
             r.add(j);
