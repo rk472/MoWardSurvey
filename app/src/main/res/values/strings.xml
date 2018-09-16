@@ -28,8 +28,10 @@
         <item>O-</item>
     </string-array>
     <string-array name="marr">
-        <item>Married</item>
         <item>Unmarried</item>
+        <item>Married</item>
+        <item>Widow</item>
+        <item>Divorced</item>
     </string-array>
     <string name="title_activity_home">HomeActivity</string>
     <string name="survey">Survey</string>
