@@ -46,6 +46,7 @@
             android:parentActivityName=".HomeActivity" />
         <activity
             android:name=".ViewDataActivity"
+            android:parentActivityName=".ViewFamilyActivity"
             android:label="Family Members" />
         <activity
             android:name=".PersonDataActivity"
