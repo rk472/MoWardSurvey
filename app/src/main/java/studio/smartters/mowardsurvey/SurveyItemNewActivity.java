@@ -13,7 +13,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -39,6 +41,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Calendar;
 import java.util.Objects;
 
@@ -109,6 +113,7 @@ public class SurveyItemNewActivity extends AppCompatActivity {
     }
 
 
+
     public static class PlaceholderFragment extends Fragment {
         public PlaceholderFragment(){}
         @SuppressLint("ValidFragment")
@@ -147,7 +152,7 @@ public class SurveyItemNewActivity extends AppCompatActivity {
             selectMaritialStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    if(position==0) {
+                    if(position==1) {
                         serveyDOM.setEnabled(true);
                     }
                     else{
@@ -184,15 +189,74 @@ public class SurveyItemNewActivity extends AppCompatActivity {
             serveyDOB.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Calendar c=Calendar.getInstance();
+                    String dob=serveyDOB.getText().toString().trim();
+                    int year,month,day;
+                    if(TextUtils.isEmpty(dob)) {
+                        Calendar c = Calendar.getInstance();
+                        year=c.get(Calendar.YEAR);
+                        month=c.get(Calendar.MONTH);
+                        day=c.get(Calendar.DAY_OF_MONTH);
+                    }else{
+                         year=Integer.parseInt(dob.split("/")[2]);
+                         month=Integer.parseInt(dob.split("/")[1])-1;
+                         day=Integer.parseInt(dob.split("/")[0]);
+                    }
                     DatePickerDialog d=new DatePickerDialog(v.getContext(), new DatePickerDialog.OnDateSetListener() {
                         @Override
                         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
                             serveyDOB.setText(dayOfMonth+"/"+(month+1)+"/"+year);
                         }
-                    },c.get(Calendar.YEAR),c.get(Calendar.MONTH)+1,c.get(Calendar.DAY_OF_MONTH));
+                    },year,month,day);
                     d.show();
+                }
+            });
+            selectGender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    String dob=serveyDOB.getText().toString();
+                    if(!TextUtils.isEmpty(dob)){
+                        int year=Integer.parseInt(dob.split("/")[2]);
+                        int month=Integer.parseInt(dob.split("/")[1]);
+                        int day=Integer.parseInt(dob.split("/")[0]);
+                        int age=getAge(year,month-1,day);
+                        if(!((age>=21 && selectGender.getSelectedItemPosition()==0) || (age>=18 && (selectGender.getSelectedItemPosition()==1 || selectGender.getSelectedItemPosition()==2)))){
+                            selectMaritialStatus.setSelection(0);
+                            selectMaritialStatus.setEnabled(false);
+                        }else{
+                            selectMaritialStatus.setEnabled(true);
+                        }
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+            serveyDOB.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    int year=Integer.parseInt(s.toString().split("/")[2]);
+                    int month=Integer.parseInt(s.toString().split("/")[1]);
+                    int day=Integer.parseInt(s.toString().split("/")[0]);
+                    int age=getAge(year,month-1,day);
+                    if(!((age>=21 && selectGender.getSelectedItemPosition()==0) || (age>=18 && (selectGender.getSelectedItemPosition()==1 || selectGender.getSelectedItemPosition()==2)))){
+                        selectMaritialStatus.setSelection(0);
+                        selectMaritialStatus.setEnabled(false);
+                    }else{
+                        selectMaritialStatus.setEnabled(true);
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
                 }
             });
             serveyDOM.setOnClickListener(new View.OnClickListener() {
@@ -204,7 +268,7 @@ public class SurveyItemNewActivity extends AppCompatActivity {
                         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                             serveyDOM.setText(dayOfMonth+"/"+(month+1)+"/"+year);
                         }
-                    },c.get(Calendar.YEAR),c.get(Calendar.MONTH)+1,c.get(Calendar.DAY_OF_MONTH));
+                    },c.get(Calendar.YEAR),c.get(Calendar.MONTH),c.get(Calendar.DAY_OF_MONTH));
                     d.show();
                 }
             });
@@ -252,7 +316,17 @@ public class SurveyItemNewActivity extends AppCompatActivity {
             });
             return v;
         }
-
+        private int getAge(int year, int month, int day){
+            Calendar dob = Calendar.getInstance();
+            Calendar today = Calendar.getInstance();
+            dob.set(year, month, day);
+            int age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
+            if (today.get(Calendar.MONTH) < dob.get(Calendar.MONTH)){
+                if(today.get(Calendar.DAY_OF_MONTH) < dob.get(Calendar.DAY_OF_MONTH))
+                    age--;
+            }
+            return age;
+        }
         @Override
         public void onActivityCreated(@Nullable Bundle savedInstanceState) {
             super.onActivityCreated(savedInstanceState);
