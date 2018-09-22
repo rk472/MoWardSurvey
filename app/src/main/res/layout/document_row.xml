@@ -10,13 +10,27 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="10">
-        <TextView
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="9"
-            android:layout_height="wrap_content"
-            android:textSize="25sp"
-            android:id="@+id/document_name"
-            android:text="name"/>
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:text="Doccument Name :"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="22sp"
+                android:layout_margin="5sp"
+                android:id="@+id/document_name"
+                android:textAllCaps="true"
+                android:text="name"/>
+        </LinearLayout>
+
         <ImageButton
             android:visibility="gone"
             android:layout_width="0dp"
