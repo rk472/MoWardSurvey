@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="studio.smartters.mowardsurvey.HomeActivity">
     <item
+        android:id="@+id/action_doc"
+        android:orderInCategory="100"
+        android:title="View Documents" />
+    <item
         android:id="@+id/action_booth"
         android:orderInCategory="100"
         android:icon="@drawable/booth_vect"
