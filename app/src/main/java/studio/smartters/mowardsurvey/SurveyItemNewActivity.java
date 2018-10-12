@@ -293,6 +293,10 @@ public class SurveyItemNewActivity extends AppCompatActivity {
                         Toast.makeText(inst, "You must fill the date of marriage", Toast.LENGTH_SHORT).show();
                     }else if(phone.length()<10){
                         Toast.makeText(inst, "Invalid phone number", Toast.LENGTH_SHORT).show();
+                    }else if(!noAdhar && TextUtils.isEmpty(adhar)){
+                        Toast.makeText(inst, "Adhar number must be filled", Toast.LENGTH_SHORT).show();
+                    }else if(!noVoter && TextUtils.isEmpty(voter)){
+                        Toast.makeText(inst, "Voter number must be filled", Toast.LENGTH_SHORT).show();
                     }else{
                         Survey servey=new Survey();
                         servey.setAdhar(adhar);
