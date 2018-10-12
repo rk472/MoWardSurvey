@@ -69,7 +69,8 @@
         <activity android:name=".ViewFamilyActivity"
             android:label="All Survey Data"
             android:parentActivityName=".HomeActivity" />
-        <activity android:name=".AddDocumentActivity"/>
+        <activity android:name=".AddDocumentActivity"
+            android:label="All Forms"/>
     </application>
 
 </manifest>
